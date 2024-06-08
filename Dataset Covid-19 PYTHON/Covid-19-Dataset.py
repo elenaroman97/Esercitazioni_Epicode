@@ -61,7 +61,7 @@ plt.show()
 icu_data = data[(data['location'].isin(['Italy', 'Germany', 'France'])) &
                 (data['date'] >= '2022-05-01') & (data['date'] <= '2023-04-30')]
 
-# Realizzazione del grafico statistico (boxplot) per quanto riguarda le variabili muantitative dei casi
+# Realizzazione del grafico statistico (boxplot) per quanto riguarda le variabili comulative dei casi
 plt.figure(figsize=(10, 6))
 icu_data.boxplot(column='icu_patients', by='location', grid=False)
 plt.title('ICU Patients from May 2022 to April 2023')
@@ -73,12 +73,12 @@ plt.show()
 # Descrizione dei dati trovati
 print(icu_data.groupby('location')['icu_patients'].describe())
 
-#### Step 7: Analisi dei pazienti ospitalizzati (Italia, Germania , Francia, Spagna  - 2023)
+#### Step 7: Analisi dei pazienti ospedalizzati (Italia, Germania , Francia, Spagna  - 2023)
 
-# Filter data for hospitalized patients in 2023
+# Filtraggio dei dati per i pazienti ospedalizzati nel 2023
 hosp_data = data[(data['location'].isin(['Italy', 'Germany', 'France', 'Spain'])) &
                  (data['date'].str.contains('2023'))]
 
-# Somma totale dei pazienti ospitalizzati
+# Somma totale dei pazienti ospedalizzati
 hosp_sum = hosp_data.groupby('location')['hosp_patients'].sum().reset_index()
 print(hosp_sum)
